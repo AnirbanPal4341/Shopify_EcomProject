@@ -1,0 +1,49 @@
+
+<div class="body-div">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="posts.length > 0 && !isLoading" class="main-div">
+  <mat-card class="product-card" *ngFor="let post of posts; let i = index" [class.mat-elevation-z5]="true" >
+    <mat-card-header>
+      <mat-card-title>{{post.type}}</mat-card-title>
+      <mat-card-subtitle>Brand Name: <b>{{post.brand}}</b></mat-card-subtitle>
+    </mat-card-header>
+    <div class="img-container">
+    <img mat-card-image [src]="post.imagePath" [alt]="post.title" id="product-img">
+    </div>
+    <mat-card-content>
+      <p>
+        {{post.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-content>
+      <p>Price: 
+      <b>
+        {{post.price}}
+      </b>
+      </p>
+    </mat-card-content>
+    <mat-card-content>
+      <p>Sizes Available: {{post.size}}</p>
+      <p>Material: {{post.material}}</p>
+      <p>Availability: {{post.availability}}</p>
+    </mat-card-content>
+    <!-- <mat-card-actions *ngIf="userIsAuthenticated && userId === post.creator" class="action">
+      <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
+    </mat-card-actions> -->
+    <mat-card-actions  *ngIf="userIsAuthenticated" class="action">
+       <button mat-button color="primary"  [class.mat-elevation-z2]="true">Buy</button>
+       <button mat-button color="primary" (click)="onAddCart(post.type,post.imagePath,post.price,post.creator)" [class.mat-elevation-z2]="true">Add to Cart</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"
+  *ngIf="posts.length > 0"></mat-paginator>
+
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>
+<div style="display: flex; justify-content: center; margin-bottom: 10px;"  *ngIf="posts.length > 0 && !isLoading">
+  Happy Shopping :)
+</div>
+<br>
+<br>
+</div>

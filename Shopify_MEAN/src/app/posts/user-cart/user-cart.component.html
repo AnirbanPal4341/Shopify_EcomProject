@@ -1,0 +1,19 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let post of posts" class="panel">
+    <mat-expansion-panel-header>
+      {{ post.type }}
+    </mat-expansion-panel-header>
+    <div class="post-image">
+      <img [src]="post.imagePath" [alt]="post.title">
+    </div>
+    <p>{{ post.price }}</p>
+    <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">
+      <button mat-button color="primary"   [class.mat-elevation-z2]="true">Buy</button>
+      <button mat-button color="warn"  [class.mat-elevation-z2]="true" (click)="onRemoveCart(post.id)">Remove</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<br>
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">Your Cart is empty!</p>
+<br>

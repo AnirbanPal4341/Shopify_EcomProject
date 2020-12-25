@@ -1,0 +1,25 @@
+<div style="height: 100vh; padding-top: 5%;">
+    <mat-card class="card-signup" [class.mat-elevation-z3]="true">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+      <form [formGroup]="form" *ngIf="!isLoading">
+        <mat-form-field>
+        <b>Username :  </b> <input matInput type="text" formControlName="username" placeholder="username" style="width: 60%;">
+        </mat-form-field>
+        <mat-form-field>
+            <b>Email :  </b> <input matInput type="text" formControlName="email" placeholder="email" style="width: 60%;">
+        </mat-form-field>
+        <mat-form-field>
+            <b>Address :  </b> <input matInput type="text" formControlName="address" placeholder="address" style="width: 60%;">
+        </mat-form-field>
+        <mat-form-field>
+            <b>Phone No. :  </b> <input matInput type="text" formControlName="phone_number" placeholder="phone_number" style="width: 60%;">
+        </mat-form-field>
+        <mat-form-field>
+            <b>Age :  </b> <input matInput type="text" formControlName="age" placeholder="age" style="width: 60%;">
+        </mat-form-field>
+        <mat-form-field>
+            <b>Gender :  </b> <input matInput type="text" formControlName="gender" placeholder="gender" style="width: 60%;">
+        </mat-form-field>
+      </form>
+    </mat-card>
+    </div>

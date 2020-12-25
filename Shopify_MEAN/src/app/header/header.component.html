@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<mat-toolbar class="tool"  style="position: sticky; top:0;z-index: 1;">
+  <span>
+    <i class="fas fa-tshirt" style="color: chartreuse;"></i>
+    <b><i style="color: chartreuse;font-size: larger">Shopify&nbsp;&nbsp;&nbsp;</i></b>
+  </span>
+  <span>
+    <a routerLink="/" id="bp">Browse Products</a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent">Add Product</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/listings" routerLinkActive="mat-accent">Your Listings</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/cart" routerLinkActive="mat-accent">Your Cart</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/myDetails" routerLinkActive="mat-accent">My Details</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <button mat-button (click)="onLogout()">Logout</button>
+    </li>
+  </ul>
+</mat-toolbar>

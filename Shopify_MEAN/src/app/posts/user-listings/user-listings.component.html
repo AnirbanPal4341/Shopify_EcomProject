@@ -1,0 +1,42 @@
+
+<div class="body-div" style="min-height: 100vh;">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div *ngIf="posts.length > 0 && !isLoading" class="main-div">
+      <mat-card class="product-card" *ngFor="let post of posts; let i = index" >
+        <mat-card-header>
+          <mat-card-title>{{post.type}}</mat-card-title>
+          <mat-card-subtitle>Brand Name: <b>{{post.brand}}</b></mat-card-subtitle>
+        </mat-card-header>
+        <div class="img-container">
+        <img mat-card-image [src]="post.imagePath" [alt]="post.title" id="product-img">
+        </div>
+        <mat-card-content>
+          <p>
+            {{post.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-content>
+          <p>Price: 
+          <b>
+            {{post.price}}
+          </b>
+          </p>
+        </mat-card-content>
+        <mat-card-content>
+          <p>Sizes Available: {{post.size}}</p>
+          <p>Material: {{post.material}}</p>
+          <p>Availability: {{post.availability}}</p>
+        </mat-card-content>
+        <mat-card-actions *ngIf="userIsAuthenticated && userId === post.creator" class="action">
+          <a mat-button color="primary" [routerLink]="['/edit', post.id]" [class.mat-elevation-z2]="true">EDIT</a>
+          <button mat-button color="warn" (click)="onDelete(post.id)" [class.mat-elevation-z2]="true">DELETE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading" style="margin-top: -1px;">No posts added yet!</p>
+    <!-- <br>
+    <div style="display: flex; justify-content: center; margin-bottom: 10px;"  *ngIf="posts.length > 0 && !isLoading">  
+    </div> -->
+    <br>
+    </div>
+    
